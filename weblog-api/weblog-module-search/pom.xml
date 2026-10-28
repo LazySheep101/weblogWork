@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lazydaze</groupId>
+        <artifactId>weblog-springboot</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.lazydaze</groupId>
+    <artifactId>weblog-module-search</artifactId>
+    <name>weblog-module-search</name>
+    <description>weblog-module-search (站内搜索模块)</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lazydaze</groupId>
+            <artifactId>weblog-module-common</artifactId>
+        </dependency>
+
+        <!-- 免写冗余的 Java 样板式代码 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+        </dependency>
+
+        <!-- <dependency> -->
+        <!--     <groupId>org.apache.lucene</groupId> -->
+        <!--     <artifactId>lucene-analyzers-common</artifactId> -->
+        <!-- </dependency> -->
+        <!-- <dependency> -->
+        <!--     <groupId>org.apache.lucene</groupId> -->
+        <!--     <artifactId>lucene-analyzers-ik</artifactId> -->
+        <!-- </dependency> -->
+
+        <!-- Lucene 查询解析器 -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-smartcn</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-highlighter</artifactId>
+        </dependency>
+
+        <!-- 工具包 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <!-- 常用工具库 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

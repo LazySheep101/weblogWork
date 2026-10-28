@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.16</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.lazydaze</groupId>
+    <artifactId>weblog-springboot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>weblog-springboot</name>
+    <!-- 项目描述 -->
+    <description>前后端分离博客 Weblog By LazyDaze101</description>
+
+    <!-- 多模块项目父工程打包模式必须指定为 pom -->
+    <packaging>pom</packaging>
+
+    <!-- 子模块管理 -->
+    <modules>
+        <!-- 入口模块 -->
+        <module>weblog-web</module>
+        <!-- 管理后台 -->
+        <module>weblog-module-admin</module>
+        <!-- 通用模块 -->
+        <module>weblog-module-common</module>
+        <!-- JWT 模块 -->
+        <module>weblog-module-jwt</module>
+        <!-- 站内搜索模块 -->
+        <module>weblog-module-search</module>
+    </modules>
+
+
+    <!-- 版本号统一管理 -->
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Maven 相关 -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- 依赖包版本 -->
+        <lombok.version>1.18.38</lombok.version>
+        <guava.version>33.4.8-jre</guava.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
+        <commons-io.version>2.18.0</commons-io.version>
+        <knife4j.version>4.5.0</knife4j.version>
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <jjwt.version>0.11.5</jjwt.version>
+        <minio.version>8.5.17</minio.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <commonmark.version>0.24.0</commonmark.version>
+        <lucene.version>8.11.4</lucene.version>
+        <sensitive-word.version>0.29.2</sensitive-word.version>
+        <tianai-captcha.version>1.5.4</tianai-captcha.version>
+    </properties>
+
+    <!-- 统一依赖管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.lazydaze</groupId>
+                <artifactId>weblog-module-admin</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lazydaze</groupId>
+                <artifactId>weblog-module-common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lazydaze</groupId>
+                <artifactId>weblog-module-jwt</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lazydaze</groupId>
+                <artifactId>weblog-module-search</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <!-- 常用工具库 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+
+            <!-- knife4j（API 文档工具，OpenAPI3 + Jakarta） -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
+            <!-- Mybatis Plus（Spring Boot 3；3.5.7 仍内置分页/IService，避免 3.5.9+ 拆包兼容问题） -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
+
+            <!--   JWT   -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- 对象存储 Minio -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <!-- Mapstruct 属性映射 -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!-- Markdown 解析 -->
+            <dependency>
+                <groupId>org.commonmark</groupId>
+                <artifactId>commonmark</artifactId>
+                <version>${commonmark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonmark</groupId>
+                <artifactId>commonmark-ext-gfm-tables</artifactId>
+                <version>${commonmark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonmark</groupId>
+                <artifactId>commonmark-ext-heading-anchor</artifactId>
+                <version>${commonmark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonmark</groupId>
+                <artifactId>commonmark-ext-image-attributes</artifactId>
+                <version>${commonmark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonmark</groupId>
+                <artifactId>commonmark-ext-task-list-items</artifactId>
+                <version>${commonmark.version}</version>
+            </dependency>
+
+            <!-- Lucene 搜索引擎 -->
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-core</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-analyzers-smartcn</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-highlighter</artifactId>
+                <version>${lucene.version}</version> <!-- 使用你实际的 Lucene 版本 -->
+            </dependency>
+
+
+            <!-- Lucene 查询解析器 -->
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-queryparser</artifactId>
+                <version>${lucene.version}</version> <!-- 请根据实际需要选择版本 -->
+            </dependency>
+
+            <!-- 敏感词过滤 -->
+            <!-- <dependency> -->
+            <!--     <groupId>io.github.toolgood</groupId> -->
+            <!--     <artifactId>toolgood-words</artifactId> -->
+            <!--     <version>${toolgood-words.version}</version> -->
+            <!-- </dependency> -->
+            <dependency>
+                <groupId>com.github.houbb</groupId>
+                <artifactId>sensitive-word</artifactId>
+                <version>${sensitive-word.version}</version>
+            </dependency>
+
+
+            <!-- 行为验证码 -->
+            <dependency>
+                <groupId>cloud.tianai.captcha</groupId>
+                <artifactId>tianai-captcha-springboot-starter</artifactId>
+                <version>${tianai-captcha.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!-- 统一插件管理 -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.version}</source> <!-- 根据你的 JDK 版本进行调整 -->
+                        <target>${java.version}</target> <!-- 根据你的 JDK 版本进行调整 -->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version> <!-- 使用时请检查最新版本 -->
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- 使用阿里云的 Maven 仓库源，提升包下载速度 -->
+    <repositories>
+        <repository>
+            <id>huaweicloud</id>
+            <name>huawei</name>
+            <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+        </repository>
+        <repository>
+            <id>aliyunmaven</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
+</project>

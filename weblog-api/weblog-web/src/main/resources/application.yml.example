@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  mail:
+    host: smtp.qq.com
+    username: your_email@qq.com
+    password: your_mail_auth_code
+    default-encoding: utf-8
+    protocol: smtps
+    port: 465
+
+jwt:
+  issuer: your_issuer
+  secret: your_jwt_secret_base64
+  tokenExpireTime: 1440
+  tokenHeaderKey: Authorization
+  tokenPrefix: Bearer
+
+api-key: your_guigui_api_key
+
+captcha:
+  expire:
+    default: 10000
+    WORD_IMAGE_CLICK: 20000
+  secondary:
+    enabled: true
+  init-default-resource: true
+  local-cache-enabled: true
+  local-cache-size: 20
